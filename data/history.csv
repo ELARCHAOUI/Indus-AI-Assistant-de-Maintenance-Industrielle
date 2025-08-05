@@ -1,0 +1,4 @@
+date,equipment,symptoms,root_cause,solution 
+2025-01-15,Pompe Centrifuge P-101,"""Vibrations excessives et bruit de claquement � haute vitesse""","""Roulements � billes us�s""","""Remplacer les roulements (pi�ce #54-B). V�rifier l'alignement de l'arbre."" "
+2025-06-05,Moteur �lectrique M-20,"""Ne d�marre pas, bourdonnement �lectrique""","""Condensateur de d�marrage d�fectueux""","""Remplacer le condensateur de d�marrage (pi�ce #C-789)."" "
+2025-03-22,Pompe Centrifuge P-101,"""Le moteur surchauffe apr�s 10 minutes. D�bit faible.""","""Filtre d'aspiration obstru� par des d�bris""","""Nettoyer le filtre d'aspiration et v�rifier la cr�pine."" "

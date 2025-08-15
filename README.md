@@ -18,7 +18,7 @@ Indus-AI est un système expert qui centralise cette connaissance et la rend acc
 *   **Plan d'Action Guidé :** Génère une procédure de réparation structurée et sécuritaire.
 *   **RAG Transparent :** Permet de voir exactement quels extraits de la documentation l'IA a utilisés pour formuler sa réponse.
 
-## 🛠 Architecture Technique
+##  Architecture Technique
 
 L'application utilise une architecture **Retrieval-Augmented Generation (RAG)** optimisée pour la performance et la pertinence :
 
@@ -33,12 +33,12 @@ L'application utilise une architecture **Retrieval-Augmented Generation (RAG)** 
     *   **Modèle d'Embedding :** `Sentence-Transformers`
     *   **Lecture de Documents :** PyMuPDF (PDF), Pandas (CSV)
 *   **Backend & Outils :** Python, Git, Environnements virtuels
-## 📈 Améliorations Futures
+##  Améliorations Futures
 
 *   [ ] Intégration d'une base de données vectorielle plus robuste (ex: ChromaDB, Pinecone) pour une gestion dynamique.
 *   [ ] Connexion à des sources de données en temps réel pour les graphiques de capteurs.
 *   [ ] Ajout de la multimodalité : permettre au technicien d'envoyer une photo de la pièce défectueuse.
 
-## 📬 Contact
+##  Contact
 
 EL ARCHAOUI - mohamedelarchaoui766@gmail.com

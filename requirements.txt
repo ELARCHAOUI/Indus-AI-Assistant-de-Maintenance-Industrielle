@@ -3,3 +3,5 @@ google-generativeai
 pandas
 pymupdf
 plotly
+faiss-cpu
+sentence-transformers

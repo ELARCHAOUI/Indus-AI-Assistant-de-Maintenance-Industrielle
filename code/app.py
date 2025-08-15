@@ -2,12 +2,12 @@
 import streamlit as st
 import os
 import google.generativeai as genai
-from utils import get_diagnosis # On importe notre cerveau !
+from utils import get_diagnosis_rag 
 
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-
+from utils import get_diagnosis_rag
 # --- Configuration de la Page et de l'API ---
 st.set_page_config(page_title="Indus-AI", page_icon="🤖")
 st.title("Indus-AI : Assistant de Maintenance Industrielle")
@@ -34,10 +34,10 @@ symptoms = st.text_area(
 st.subheader("Analyse des Données de Capteurs")
 
 # Ligne de chargement
-df_sensors = pd.read_csv('data/sensor_data.csv', on_bad_lines='warn')
+df_sensors = pd.read_csv('../data/sensor_data.csv', on_bad_lines='warn')
 
 # --- AJOUTEZ CETTE LIGNE DE DÉBOGAGE ---
-st.write("Colonnes lues par Pandas :", df_sensors.columns)
+#st.write("Colonnes lues par Pandas :", df_sensors.columns)
 # -----------------------------------------
 
 # La ligne qui plante (pour l'instant)
@@ -54,7 +54,7 @@ fig = px.line(
 fig.add_hline(y=1.0, line_dash="dot", line_color="red", annotation_text="Seuil d'alerte")
 st.plotly_chart(fig, use_container_width=True)
 
-# --- Section de Saisie Utilisateur (légèrement modifiée) ---
+# --- Section de Saisie Utilisateur  ---
 st.subheader("Diagnostic de la Panne")
 equipment = st.text_input("Nom de l'équipement", value="Pompe P-101")
 symptoms = st.text_area(
@@ -64,13 +64,24 @@ symptoms = st.text_area(
 )
 # --- Bouton de Lancement et Affichage des Résultats ---
 st.subheader("2. Obtenez le diagnostic")
+
+
 if st.button("Lancer le Diagnostic"):
     if equipment and symptoms:
-        with st.spinner("Analyse en cours... L'IA lit la documentation..."):
-            # C'est ici que l'on connecte l'interface au cerveau
-            diagnosis_result = get_diagnosis(equipment, symptoms)
+        with st.spinner("Analyse en cours... L'IA cherche dans la base de connaissances..."):
+            # MODIFICATION : On récupère maintenant deux valeurs
+            diagnosis_result, retrieved_chunks = get_diagnosis_rag(equipment, symptoms)
             
             st.subheader("3. Résultat de l'Analyse")
             st.markdown(diagnosis_result)
+            
+            # --- C'EST LA PARTIE MAGIQUE ---
+            # On affiche les sources que l'IA a utilisées, dans un menu déroulant
+            with st.expander("Voir les sources utilisées par l'IA (Contexte RAG)"):
+                st.info(f"L'IA a basé sa réponse sur les {len(retrieved_chunks)} extraits les plus pertinents du manuel :")
+                for i, chunk in enumerate(retrieved_chunks):
+                    st.write(f"**Source {i+1}:**")
+                    st.write(f"> {chunk}")
+        # ------------------------------------
     else:
         st.error("Veuillez renseigner le nom de l'équipement et les symptômes.")

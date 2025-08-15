@@ -1,0 +1,38 @@
+Next Step : Phase 2 - L'Optimisation Professionnelle (RAG Avancé)
+Le Problème Actuel : Votre RAG actuel lit l'intégralité du manuel PDF à chaque question.
+C'est comme si, pour trouver la définition d'un mot, vous lisiez tout le dictionnaire de A à Z à chaque fois. 
+C'est lent, inefficace, et ça ne fonctionnera pas avec des documents de 100 pages.
+La Solution Professionnelle : Nous allons utiliser une base de données vectorielle (FAISS).
+1. On va lire le PDF une seule fois.
+2. On le découpe en petits paragraphes logiques ("chunks").
+3. On transforme chaque paragraphe en un "vecteur" numérique qui représente son sens (c'est un "embedding").
+4. On stocke tous ces vecteurs dans un index FAISS, qui est une sorte de catalogue ultra-rapide.
+5. Quand l'utilisateur pose une question, on transforme sa question en vecteur et on demande à FAISS : "Donne-moi les 5 paragraphes du manuel dont le sens est le plus proche de cette question".
+6. On envoie uniquement ces 5 paragraphes à l'IA, lui donnant un contexte parfait et ciblé.
+C'est parti pour la mise en œuvre.
+preprocess.py
+#####################################################################################################################
+- Partie 1 : Le Test de Régression (Vérifier que rien n'est cassé)
+
+
+L'objectif ici est de s'assurer que notre nouvelle architecture complexe répond toujours correctement aux cas d'usage simples que nous avions déjà validés.
+
+Action : Relancez les mêmes tests que pour la Phase 1.
+
+Test 1 : Moteur ne démarre pas
+
+
+	- Symptôme : Le moteur ne démarre pas du tout, il ne tousse même pas.
+	- Résultat attendu : L'IA doit toujours suggérer de vérifier la vanne de carburant, l'interrupteur et le starter.
+- 
+Test 2 : Moteur noyé
+
+
+	- Symptôme : Le moteur ne démarre pas et ça sent l'essence.
+	- Résultat attendu : L'IA doit toujours suggérer de sécher la bougie et de redémarrer avec la manette des gaz en position FAST.
+- 
+Test 3 : Pas d'eau
+
+
+	- Symptôme : Le moteur tourne bien mais aucune eau ne sort.
+	- Résultat attendu : L'IA doit toujours identifier que la pompe n'est pas amorcée et donner la procédure pour le faire.

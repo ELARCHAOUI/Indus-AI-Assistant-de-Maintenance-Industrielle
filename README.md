@@ -1,9 +1,4 @@
 # Indus-AI-Assistant-de-Maintenance-Industrielle
-
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.35-FF4B4B.svg)](https://streamlit.io)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 Une application web qui sert d'assistant intelligent pour les techniciens de maintenance. Elle utilise un LLM (Google Gemini) et une architecture RAG avancée avec une base de données vectorielle (FAISS) pour diagnostiquer des pannes en se basant sur la documentation technique et l'historique des pannes.
 
 ##  Le Problème
